@@ -2,13 +2,22 @@ import { fetchGitHubProfile, fetchGitHubRepos } from './api.js';
 import { elements, getSearchValue, renderProfile, setSearchState, showAlert } from './ui.js';
 
 elements.btnSearch.addEventListener('click', async () => {
+    await handleSearch();
+});
+
+elements.inputSearch.addEventListener('keydown', async (event) => {
+    if (event.key === 'Enter') {
+        await handleSearch();
+    }
+});
+
+async function handleSearch() {
     const userName = getSearchValue();
 
     if (!userName) {
         showAlert('Por favor, digite um nome de usuário do GitHub');
         return;
     }
-
     try {
         setSearchState(true);
         const userData = await fetchGitHubProfile(userName);
@@ -20,4 +29,4 @@ elements.btnSearch.addEventListener('click', async () => {
     } finally {
         setSearchState(false);
     }
-});
+}
