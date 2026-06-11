@@ -16,7 +16,24 @@ export function setSearchState(isLoading) {
     }
 }
 
-export function renderProfile(userData) {
+export function renderProfile(userData, userRepos) {
+
+    const repositoriesHTMl = userRepos && userRepos.length > 0 ? userRepos.map(repo => `
+
+        <a href="${repo.html_url}" target="_blank">
+            <div class="repoitory-card">
+        
+                <h3>${repo.name}</h3>
+                <div class="repoitory--stats">
+                    <span>⭐ Stars: ${repo.stargazers_count}</span>
+                    <span>🍴 Forks: ${repo.forks_count}</span>
+                    <span>👀 Watchers: ${repo.watchers_count}</span>
+                    <span>💻 Language: ${repo.language || 'Não informada'}</span>
+                </div>
+            </div>
+        </a>
+        `).join('') : `<p>Este usuário não possui repositórios públicos 😥.</p>`;
+
     elements.profileResults.innerHTML = `
         <div class="profile-card">
             <img src="${userData.avatar_url}" alt="Avatar de ${userData.name || userData.login}" class="profile-avatar">
@@ -37,6 +54,16 @@ export function renderProfile(userData) {
                 <span>${userData.following}</span>
             </div>
         </div>
+
+
+        
+        
+        <div class="profile-repositories">
+            <h2>Repositórios mais recentes</h2>
+            <div class="repositories">
+                ${repositoriesHTMl}
+            </div>
+        </div>       
     `;
 }
 

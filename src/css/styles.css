@@ -225,3 +225,72 @@ main {
   font-size: 2rem;
   font-weight: bold;
 }
+
+
+
+.profile-repositories {
+  width: 100%;
+  margin-top: var(--spacing-2xl);
+}
+
+.profile-repositories h2 {
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.repositories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  width: 100%;
+}
+
+.repoitory-card {
+  border: 1px solid #d0d0d0;
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.repoitory-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+}
+
+.repoitory-card h3 {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  margin: 0;
+  color: var(--foreground);
+  word-break: break-word;
+}
+
+.repoitory--stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.repoitory--stats span {
+  font-size: var(--font-sm);
+  color: var(--muted-foreground);
+  background: #ececec;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.25rem;
+  text-align: left;
+}
+
+@media (max-width: 740px) {
+  .repositories {
+    grid-template-columns: 1fr;
+  }
+}
